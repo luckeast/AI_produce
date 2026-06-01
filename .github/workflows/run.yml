@@ -3,7 +3,7 @@ name: Polarstar Balance Monitor
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "*/5 * * * *"  # UTC 每5分钟
 
 jobs:
   run-monitor:
@@ -13,5 +13,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.10'
-      - run: pip install requests
-      - run: python polarstar_monitor.py
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run monitor
+        run: |
+          echo "=== 开始执行 $(date -u) ==="
+          python polarstar_monitor.py
+          echo "=== 执行结束 $(date -u) ==="
