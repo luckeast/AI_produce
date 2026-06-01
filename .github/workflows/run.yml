@@ -1,24 +1,13 @@
-name: Polarstar Balance Monitor
+name: Test Cron
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/5 * * * *"  # 每5分钟执行一次，UTC时间
+    - cron: '*/5 * * * *'  # 每 5 分钟，合法间隔
 
 jobs:
-  run-monitor:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
-
-      - name: 安装依赖
-        run: pip install requests
-
-      - name: 运行监控脚本
-        run: |
-          echo "=== 开始执行 $(date -u) ==="
-          python polarstar_monitor.py
-          echo "=== 执行结束 $(date -u) ==="
+      - name: 打印时间
+        run: echo "Run at $(date -u)"
