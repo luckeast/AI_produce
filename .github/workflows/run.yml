@@ -3,7 +3,7 @@ name: Polarstar Balance Monitor
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/5 * * * *"  # UTC 每5分钟
+    - cron: "*/1 * * * *"  # UTC 每1分钟
 
 jobs:
   run-monitor:
